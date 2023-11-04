@@ -60,7 +60,6 @@ Dictionary* init_dictionary(char* dictionary_path, int max_word_size, char** all
         mallerr(bigdict[i]);
         dictnode_values[i] = malloc(dict_count[i] * sizeof(int*));
         mallerr(dictnode_values[i]);
-        printf("Length %d size %d\n",i,dict_count[i]);
     }
 
     // Keeping track of all array indexes 

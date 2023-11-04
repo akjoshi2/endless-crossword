@@ -74,7 +74,7 @@ int main(int argc, char* argv[]) {
 
     int success = solve_crossword(crossword, bigdict, grid_words, grid_count, dict_maps);
     if(success == 1) exit(1);
-    draw_crossword(crossword, crossword_size);
+    // draw_crossword(crossword, crossword_size);
     print_solution(crossword, ord_words, crossword_nums, grid_count);
 
     // Cleanup
