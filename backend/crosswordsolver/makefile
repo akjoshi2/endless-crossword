@@ -1,4 +1,4 @@
-EXECUTABLE := crosswordsolver
+EXECUTABLE := cwsolver
 
 BUILD_DIR := ./target
 SRC_DIRS := ./src
