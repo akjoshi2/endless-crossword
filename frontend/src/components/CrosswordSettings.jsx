@@ -1,13 +1,4 @@
 import { useState } from 'react';
-/*import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
-import Input from '@material-ui/core/Input';*/
 import { Card, CardContent, Button, TextField, FormControl, InputLabel, Select, MenuItem, Input } from "@mui/material";
 
 const CrosswordSettings = () => {
