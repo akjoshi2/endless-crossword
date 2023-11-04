@@ -29,7 +29,7 @@ function App() {
   //   </>
   // )
 
-  return <div style={{margin: "1rem"}}>
+  return <div>
     <CrosswordLayout />
   </div>
 }
