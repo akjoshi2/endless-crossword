@@ -2,4 +2,5 @@ backend/cross_venv
 backend/crossword
 backend/0000.parquet
 backend/crosswordsolver/target/
+!backend/crosswordsolver/target
 backend/crosswordsolver/crosswordsolver
