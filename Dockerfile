@@ -1,6 +1,4 @@
 FROM --platform=linux/amd64 ubuntu:latest
-WORKDIR /backend
-
 RUN apt-get update && \
   apt-get -y upgrade && \
   apt-get install -y python3 \
@@ -22,5 +20,6 @@ RUN python3 backend/db.py
 ENV FLASK_APP=api.py
 
 EXPOSE 8080
+WORKDIR /backend
 CMD ["gunicorn" , "api:app", "--bind 0.0.0.0:8080", "--log-level=debug", "--workers=4"]
 
