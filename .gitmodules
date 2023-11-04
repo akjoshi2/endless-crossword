@@ -1,0 +1,3 @@
+[submodule "frontend/src/crossword-comp/react-crossword"]
+	path = frontend/src/crossword-comp/react-crossword
+	url = git@github.com:JaredReisinger/react-crossword.git
