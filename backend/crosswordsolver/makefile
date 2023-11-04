@@ -1,30 +1,27 @@
-TARGET_EXEC := crosswordsolver
+EXECUTABLE := crosswordsolver
 
 BUILD_DIR := ./target
 SRC_DIRS := ./src
 
-SRCS := $(shell find $(SRC_DIRS) -name '*.c' -or -name '*.s')
-
-OBJS := $(SRCS:%=$(BUILD_DIR)/%.o)
-
-DEPS := $(OBJS:.o=.d)
-
-INC_DIRS := $(shell find $(SRC_DIRS) -type d)
-
-INC_FLAGS := $(addprefix -I,$(INC_DIRS))
+# Use wildcard to automatically find source files in SRC_DIRS
+SRCS := $(wildcard $(SRC_DIRS)/*.c)
+# Generate object file names by replacing .c with .o
+OBJS := $(SRCS:$(SRC_DIRS)/%.c=$(BUILD_DIR)/%.o)
 
 CC = gcc
-CFLAGS = $(INC_FLAGS) -g3 -Wall -Wextra -Werror
+CFLAGS = -O2 -Wall -Wextra
 
-$(BUILD_DIR)/$(TARGET_EXEC): $(OBJS)
-	$(CC) $(OBJS) -o $@
+# Targets
+all: $(EXECUTABLE)
 
-$(BUILD_DIR)/%.c.o: %.c
-	mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) -c $< -o $@
+$(EXECUTABLE): $(OBJS)
+	$(CC) $(CFLAGS) -o $@ $^
 
-.PHONY: clean
+# Use pattern rule to compile .c files to .o files
+$(BUILD_DIR)/%.o: $(SRC_DIRS)/%.c
+	$(CC) $(CFLAGS) -c -o $@ $<
+
 clean:
-	rm -r $(BUILD_DIR)
+	rm -f $(OBJS) $(EXECUTABLE)
 
--include $(DEPS)
+.PHONY: all clean
