@@ -1,4 +1,4 @@
-
+import { CrosswordLayout } from "./components/CrosswordLayout";
 import './App.css'
 
 function App() {
