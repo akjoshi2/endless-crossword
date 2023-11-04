@@ -43,5 +43,3 @@ def getCross():
     con.close()
     return json.dumps(data)
 
-getCross()
-
