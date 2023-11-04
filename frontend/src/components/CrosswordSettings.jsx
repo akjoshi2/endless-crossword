@@ -54,13 +54,14 @@ const CrosswordSettings = () => {
 
     return (
         <ThemeProvider theme={selectedTheme}>
-            <Container  maxWidth="md"
+            <Container maxWidth="lg"
             style={{
                 display: 'flex',
                 flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                minHeight: '100vh', // This ensures the card is centered vertically on the screen
+                alignItems: 'flex-start',  // Change to 'flex-start' for left alignment
+                justifyContent: 'flex-start',  // Change to 'flex-start' for top alignment
+                minHeight: '100vh',
+                padding: '20px',  // Adjust padding as needed
             }}>
                 <Card style={{ minWidth: 200, maxWidth: 200, margin: '20px', padding: '20px' }}>
                     <CardContent>
