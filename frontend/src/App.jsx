@@ -30,7 +30,7 @@ function App() {
   // )
 
   return <div style={{margin: "1rem"}}>
-    <CrosswordLayout/>
+    <CrosswordLayout />
   </div>
 }
 
