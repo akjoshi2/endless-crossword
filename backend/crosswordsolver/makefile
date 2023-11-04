@@ -2,6 +2,7 @@ EXECUTABLE := crosswordsolver
 
 BUILD_DIR := ./target
 SRC_DIRS := ./src
+$(shell mkdir -p $(BUILD_DIR))
 
 # Use wildcard to automatically find source files in SRC_DIRS
 SRCS := $(wildcard $(SRC_DIRS)/*.c)
