@@ -29,9 +29,11 @@ function App() {
   //   </>
   // )
 
-  return <div>
-    <CrosswordLayout />
-  </div>
+  return (
+    <>
+      <CrosswordLayout />
+    </>
+  );
 }
 
 export default App
