@@ -19,6 +19,7 @@ def getCross():
 @app.route("/")
 def hello():
     print("HELLO WORLD")
+    return {"hello" : "mate"}
 
 
 
