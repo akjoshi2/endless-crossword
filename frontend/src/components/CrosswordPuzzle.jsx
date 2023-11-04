@@ -429,10 +429,7 @@ export const CrosswordPuzzle = () => {
 		},
 	}
 	return (
-		<Container maxWidth="md"
-		style={{
-			display: 'flex',
-		}}>
+		<Container maxWidth="md" className='_crosswordPuzzle'>
 			<Crossword data={data} theme={{
 				focusBackground: "#ffda00",
 				highlightBackground: "#a7d8ff",

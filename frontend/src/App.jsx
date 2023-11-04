@@ -1,5 +1,5 @@
 import { CrosswordLayout } from "./components/CrosswordLayout";
-///import './App.css'
+//import './App.css'
 
 function App() {
   // const [count, setCount] = useState(0)
@@ -30,7 +30,7 @@ function App() {
   // )
 
   return (
-    <div width={"500px"}>
+    <div>
       <CrosswordLayout />
     </div>
   );
