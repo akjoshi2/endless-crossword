@@ -3,7 +3,7 @@ import { Card, CardContent, Button, TextField, FormControl, InputLabel, Select, 
 
 export const CrosswordSettings = () => {
     //const [seed, setSeed] = useState('');
-    //const [difficulty, setDifficulty] = useState('');
+    const [difficulty, setDifficulty] = useState('');
 
     /*const handleSeed = (event) => {
         setSeed(event.target.value);
@@ -31,6 +31,18 @@ export const CrosswordSettings = () => {
     
     return (
         <Card>
+            <FormControl>
+                <InputLabel htmlFor="difficulty">Select Difficulty</InputLabel>
+                <Select
+                        value={difficulty}
+                        input={<TextField id="difficulty" variant="outlined" />}
+                    >
+                        <MenuItem value="easy">Easy</MenuItem>
+                        <MenuItem value="medium">Medium</MenuItem>
+                        <MenuItem value="hard">Hard</MenuItem>
+                        {/* Add more MenuItem components as needed */}
+                </Select>
+            </FormControl>
             <Button variant="contained" color="primary">
                 Generate
             </Button>
