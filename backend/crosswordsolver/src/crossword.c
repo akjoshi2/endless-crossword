@@ -2,172 +2,118 @@
 #include <stdlib.h>
 #include <string.h>
 #include <errno.h>
+#include <assert.h>
 #include "extratypes.h"
 #include "extrafuns.h"
 
-Dictionary* init_dictionary(char* dictionary_path, int max_word_size, char** all_of_dict_ret,
-                            int** dict_count_ret, register int* lengths_on_grid, register int* ascii_on_dict, int SEED, int OMIT) {
-    FILE* dictionary_file = fopen(dictionary_path, "r");
-    if (dictionary_file == NULL) // File error handling 
-        error("Error while handling dictionary");
-    // Creating a big memory block that has the whole dictionary file 
-    fseek(dictionary_file, 0, SEEK_END);
-    int file_size = ftell(dictionary_file);
-    fseek(dictionary_file, 0, SEEK_SET);
-    register char* all_of_dict = malloc((file_size + 1) * sizeof(char));
-    mallerr(all_of_dict);
-    if (fread(all_of_dict, sizeof(char), file_size, dictionary_file) != (size_t)file_size)
-        error("Error while reading the dictionary");
-    all_of_dict[file_size] = '\0';
+/*
+ *  Reads the crossword file and produces the grid based on the data.
+ *  It also returns the maximum word size on the grid and the size of the grid.
+ */
+void init_crossword(char* crossword_path, char*** crossword_ret, int* crossword_size_ret, int* max_word_size_ret) {
+    char** crossword = NULL;
+    int crossword_size = 0;
+    int max_word_size = 0;
+
+    FILE* crossword_file = fopen(crossword_path, "r");
+    if (crossword_file == NULL) { // File error handling 
+        error("Error while handling crossword");
+    }
+    if (fscanf(crossword_file, "%d\n", &crossword_size) != 1) // Check failed size scan 
+        error("Error while reading size of crossword");
+
+    if (crossword_size <= 0) {
+        fprintf(stderr, "Invalid grid size of %d cannot proceed\n", crossword_size);
+        exit(1);
+    }
     
-    // Finding how many words (per length) dict has 
-    register int* dict_count = calloc(max_word_size, sizeof(int));
-    mallerr(dict_count);
+    // Allocating memory block for the grid 
+    crossword = malloc(crossword_size * sizeof(char*));
+    mallerr(crossword);
+    // Setting every character with '\0' to begin 
+    crossword[0] = calloc(crossword_size * crossword_size, sizeof(char));
+    mallerr(crossword[0]);
+    // Fixing the pointers in the right spot 
+    for (int i = 0 ; i < crossword_size - 1 ; ++i) {
+        crossword[i + 1] = crossword[i] + crossword_size;
+    }
 
-    // Intiializing worth 
-    int worth[256] = {0};
-    srand(SEED);
-    // Counting the words in dict file 
-    int word_size = 0;
-    for (register int i = 0 ; i < file_size ; ++i) {
-        if (all_of_dict[i] == '\n') {
-            if (word_size > 0 && word_size <= max_word_size && lengths_on_grid[word_size - 1] && (rand()%OMIT)!=0) {
-                ++dict_count[word_size - 1];
-            }
-            else {
-                // If word was not needed remove it from worth 
-                for (int j = i - word_size ; j < i ; ++j) {
-                    --worth[(int)all_of_dict[j]];
-                }
-            }
-            word_size = 0;
-            continue;
+    //Reading crossword
+    for(int i = 0; i<crossword_size; i++){
+        for(int j = 0; j<crossword_size; j++){
+            char gridCharacter;
+            fscanf(crossword_file, "%c",&gridCharacter);
+            if(gridCharacter==' ') crossword[i][j] = '\r';
         }
-        ascii_on_dict[(int)all_of_dict[i]] = 1;
-        ++worth[(int)all_of_dict[i]];
-        ++word_size;
+        fscanf(crossword_file, "%*c");
     }
 
-
-    // Allocate enough arrays for all word sizes that we may need 
-    Dictionary* bigdict = calloc(max_word_size, sizeof(Dictionary));
-    mallerr(bigdict);
-    int** dictnode_values = calloc(max_word_size, sizeof(int*));
-    mallerr(dictnode_values);
-    for (int i = 0 ; i < max_word_size ; ++i) {
-        if (lengths_on_grid[i] == 0) continue;
-        bigdict[i] = malloc(dict_count[i] * sizeof(char*));
-        mallerr(bigdict[i]);
-        dictnode_values[i] = malloc(dict_count[i] * sizeof(int*));
-        mallerr(dictnode_values[i]);
-        printf("Length %d size %d\n",i,dict_count[i]);
-    }
-
-    // Keeping track of all array indexes 
-    int* index_array = calloc(max_word_size, sizeof(int));
-    mallerr(index_array);
-    
-    // Scanning words to put into dictionary 
-
-    srand(SEED);
-    char* token = strtok(all_of_dict, "\n");
-    while (token) { // While strtok finds tokens 
-        int word_size = strlen(token);
-        if (word_size > max_word_size || lengths_on_grid[word_size - 1] == 0 || (rand()%OMIT)==0) {
-            token = strtok(NULL, "\n");
-            continue;
+    // Biggest word finder 
+    for (int i = 0 ; i < crossword_size ; ++i) {
+        int len_row = 0, len_col = 0;
+        for (int j = 0 ; j < crossword_size ; ++j) {
+            // Row section 
+            if (crossword[i][j] == '\r') {
+                if (len_row > max_word_size) max_word_size = len_row;
+                len_row = 0;
+            }
+            if (crossword[i][j] == '\0') ++len_row;
+            // Column section 
+            if (crossword[j][i] == '\r') {
+                if (len_col > max_word_size) max_word_size = len_col;
+                len_col = 0;
+            }
+            if (crossword[j][i] == '\0') ++len_col;
         }
-
-        int index = index_array[word_size - 1];
-        bigdict[word_size - 1][index] = token; // Saving the token 
-        dictnode_values[word_size - 1][index] = word_val(token, worth);
-
-        ++index_array[word_size - 1];
-        token = strtok(NULL, "\n");
-    }
-
-    // Sorting the necessary dicts 
-    for (int i = 0 ; i < max_word_size ; ++i) {
-        if (lengths_on_grid[i] == 0) continue;
-        sort_dictionary(bigdict[i], dictnode_values[i], 0, index_array[i] - 1);
+        if (len_row > max_word_size) max_word_size = len_row;
+        if (len_col > max_word_size) max_word_size = len_col;
     }
 
     // Returning the values 
-    *dict_count_ret = dict_count;
-    *all_of_dict_ret = all_of_dict;
-
+    *crossword_ret = crossword;
+    *crossword_size_ret = crossword_size;
+    *max_word_size_ret = max_word_size;
     // Cleanup 
-    for (int i = 0 ; i < max_word_size ; ++i) {
-        free(dictnode_values[i]);
-    }
-    free(dictnode_values);
-    free(index_array);
-    fclose(dictionary_file);
-    return bigdict;
+    fclose(crossword_file);
 }
 
-void free_dictionary(Dictionary* bigdict, int max_word_size, char* all_of_dict) {
-    free(all_of_dict);
-    for (int i = 0 ; i < max_word_size ; ++i) {
-        free(bigdict[i]);
+// Drawing the crossword
+void draw_crossword(char** crossword, int crossword_size) {
+    for (int i = 0 ; i < crossword_size ; ++i) {
+        for (int j = 0 ; j < crossword_size ; ++j) {
+            if (crossword[i][j] == '\r') {
+                printf("###");
+            } else {
+                // In case of cut off cell 
+                printf(" %c ", crossword[i][j] == '\0' ? ' ' : crossword[i][j]);
+            }
+        }
+        putchar('\n');
     }
-    free(bigdict);
 }
 
-char* find_word(Dictionary dictionary, Word* word) {
-    register unsigned long long* array = word->map->array;
-    int size = word->map->size;
-    for (register int i = 0 ; i < size ; ++i) {
-        if (array[i] == 0) continue;
-        for (register int j = 0 ; j < 64 ; ++j) {
-            if ((array[i] >> j) & 1) {
-                // Turning off the bit so we don't use it in the future 
-                array[i] ^= 1ULL << j;
-                --word->map->sum;
-                return dictionary[(i << 6) | j];
+//Create crossword numbers
+void number_crossword(char** crossword, int crossword_size, int*** crossword_num_ret) {
+    int** crossword_num = NULL;
+    // Allocating memory block for the number grind 
+    crossword_num = malloc(crossword_size * sizeof(int*));
+    mallerr(crossword_num);
+    // Setting every character with '\0' to begin 
+    crossword_num[0] = calloc(crossword_size * crossword_size, sizeof(int));
+    mallerr(crossword_num[0]);
+    // Fixing the pointers in the right spot 
+    for (int i = 0 ; i < crossword_size - 1 ; ++i) {
+        crossword_num[i + 1] = crossword_num[i] + crossword_size;
+    }
+
+    int current_num = 1;
+    for (int i = 0; i<crossword_size; ++i){
+        for(int j = 0; j<crossword_size; ++j){
+            if((j==0 || crossword[i][j-1]=='\r') || (i==0 || crossword[i-1][j]=='\r')){
+                crossword_num[i][j] = current_num;
+                current_num++;
             }
         }
     }
-    return NULL;
+    *crossword_num_ret = crossword_num;
 }
-
-int word_val(register char* word, register int* worth) {
-    register int value = 0, i = -1;
-    while (word[++i]) {
-        value += worth[(int)word[i]];
-    }
-    return value;
-}
-
-// Quick sort implementation that sorts the dict words based on the word's worth 
-void sort_dictionary(Dictionary dictionary, register int* dictnode_values, int first, int last) {
-    register int i, j, pivot;
-    register char* temp;
-    register int temp_v;
-    if (first < last) {
-        pivot = first;
-        i = first;
-        j = last;
-        while (i < j) {
-            while (dictnode_values[i] >= dictnode_values[pivot] && i < last) ++i;
-            while (dictnode_values[j] < dictnode_values[pivot]) --j;
-            if (i < j) {
-                temp = dictionary[i];
-                dictionary[i] = dictionary[j];
-                dictionary[j] = temp;
-                temp_v = dictnode_values[i];
-                dictnode_values[i] = dictnode_values[j];
-                dictnode_values[j] = temp_v;
-            }
-        }
-        temp = dictionary[pivot];
-        dictionary[pivot] = dictionary[j];
-        dictionary[j] = temp;
-        temp_v = dictnode_values[pivot];
-        dictnode_values[pivot] = dictnode_values[j];
-        dictnode_values[j] = temp_v;
-        sort_dictionary(dictionary, dictnode_values, first, j - 1);
-        sort_dictionary(dictionary, dictnode_values, j + 1 , last);
-    }
-}
-

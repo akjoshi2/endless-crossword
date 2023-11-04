@@ -1,6 +1,6 @@
-TARGET_EXEC := solver
+TARGET_EXEC := crosswordsolver
 
-BUILD_DIR := ./
+BUILD_DIR := ./target
 SRC_DIRS := ./src
 
 SRCS := $(shell find $(SRC_DIRS) -name '*.c' -or -name '*.s')
