@@ -1,9 +1,11 @@
-import { useState } from 'react';
-import { Card, CardContent, Button, TextField, FormControl, InputLabel, Select, MenuItem, Input, Container } from "@mui/material";
+import { useState, useEffect } from 'react';
+import { Card, CardContent, Button, TextField, FormControl, InputLabel, Select, MenuItem, Input, Container, createTheme,
+    ThemeProvider, } from "@mui/material";
 
 const CrosswordSettings = () => {
     const [seed, setSeed] = useState('');
     const [difficulty, setDifficulty] = useState('');
+    const [isDarkMode, setIsDarkMode] = useState(false);
 
     const handleSeed = (event) => {
         setSeed(event.target.value);
@@ -12,6 +14,27 @@ const CrosswordSettings = () => {
     const handleDifficulty = (event) => {
         setDifficulty(event.target.value);
     };
+
+    useEffect(() => {
+        // Check if the user prefers dark mode
+        const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        setIsDarkMode(prefersDarkMode);
+    }, []);
+
+    // Create light and dark themes
+    const lightTheme = createTheme({
+        palette: {
+            mode: 'light',
+        },
+    });
+
+    const darkTheme = createTheme({
+        palette: {
+            mode: 'dark',
+        },
+    });
+
+    const selectedTheme = isDarkMode ? darkTheme : lightTheme;
 
     const queryAPI = () => {
         // Implement your API query logic here
@@ -30,49 +53,51 @@ const CrosswordSettings = () => {
     };
 
     return (
-        <Container  maxWidth="md"
-        style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            minHeight: '100vh', // This ensures the card is centered vertically on the screen
-        }}>
-            <Card style={{ minWidth: 200, maxWidth: 200, margin: '20px', padding: '20px' }}>
-                <CardContent>
-                    {/* Dropdown options for difficulty */}
-                    <FormControl style={{ marginBottom: '20px', width: '100%'}}>
-                        <InputLabel style={{minWidth: 100, maxWidth: 1000 }} htmlFor="difficulty-label">Select Difficulty</InputLabel>
-                        <Select
-                            label="Select Difficulty"
-                            value={difficulty}
-                            onChange={handleDifficulty}
-                            input={<Input id="difficulty" />}
-                        >
-                            <MenuItem value="easy">Easy</MenuItem>
-                            <MenuItem value="medium">Medium</MenuItem>
-                            <MenuItem value="hard">Hard</MenuItem>
-                            {/* Add more MenuItem components as needed */}
-                        </Select>
-                    </FormControl>
+        <ThemeProvider theme={selectedTheme}>
+            <Container  maxWidth="md"
+            style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                minHeight: '100vh', // This ensures the card is centered vertically on the screen
+            }}>
+                <Card style={{ minWidth: 200, maxWidth: 200, margin: '20px', padding: '20px' }}>
+                    <CardContent>
+                        {/* Dropdown options for difficulty */}
+                        <FormControl style={{ marginBottom: '20px', width: '100%'}}>
+                            <InputLabel style={{minWidth: 100, maxWidth: 1000 }} htmlFor="difficulty-label">Select Difficulty</InputLabel>
+                            <Select
+                                label="Select Difficulty"
+                                value={difficulty}
+                                onChange={handleDifficulty}
+                                input={<Input id="difficulty" />}
+                            >
+                                <MenuItem value="easy">Easy</MenuItem>
+                                <MenuItem value="medium">Medium</MenuItem>
+                                <MenuItem value="hard">Hard</MenuItem>
+                                {/* Add more MenuItem components as needed */}
+                            </Select>
+                        </FormControl>
 
-                    {/* Seed input */}
-                    <form style={{ marginBottom: '20px' }}>
-                        <TextField
-                            label="Enter seed:"
-                            variant="outlined"
-                            value={seed}
-                            onChange={handleSeed}
-                        />
-                    </form>
+                        {/* Seed input */}
+                        <form style={{ marginBottom: '20px' }}>
+                            <TextField
+                                label="Enter seed:"
+                                variant="outlined"
+                                value={seed}
+                                onChange={handleSeed}
+                            />
+                        </form>
 
-                    {/* Generate button */}
-                    <Button variant="contained" color="primary" onClick={queryAPI}>
-                        Generate
-                    </Button>
-                </CardContent>
-            </Card>
-        </Container>
+                        {/* Generate button */}
+                        <Button variant="contained" color="primary" onClick={queryAPI}>
+                            Generate
+                        </Button>
+                    </CardContent>
+                </Card>
+            </Container>
+        </ThemeProvider>
     );
 };
 
