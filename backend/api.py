@@ -16,6 +16,9 @@ def getCross():
     stdout = p.communicate()
     #parse
 
+@app.route("/")
+def hello():
+    print("HELLO WORLD")
 
 
 
