@@ -1,4 +1,5 @@
 import Crossword from '@jaredreisinger/react-crossword';
+//import { CrosswordSettings } from './CrosswordSettings';
 
 export const CrosswordLayout = () => {
     const data = {
@@ -20,6 +21,10 @@ export const CrosswordLayout = () => {
       },
     }
     return (
-      <Crossword data={data} />
+      <>
+          {/*<CrosswordSettings />
+          */}
+          <Crossword data={data} />
+      </>
     )
 }

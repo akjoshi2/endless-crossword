@@ -1,14 +1,7 @@
-import React, { useState } from 'react';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
+import { useState } from 'react';
+import { Card, CardContent, Button, TextField, FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 
-const CrosswordSettings = (props) => {
+export const CrosswordSettings = () => {
     const [seed, setSeed] = useState('');
     const [difficulty, setDifficulty] = useState('');
 
@@ -72,5 +65,3 @@ const CrosswordSettings = (props) => {
         </Card>
     );
 };
-
-export default CrosswordSettings;
