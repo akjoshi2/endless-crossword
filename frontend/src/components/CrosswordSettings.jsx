@@ -7,6 +7,7 @@ import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
+import Input from '@material-ui/core/Input';
 
 const CrosswordSettings = (props) => {
     const [seed, setSeed] = useState('');
@@ -24,16 +25,16 @@ const CrosswordSettings = (props) => {
         // Implement your API query logic here
         // You can use 'seed' and 'difficulty' in your query
         // TODO: FIX FAKEURL
-        let fakeurl = ""
-        fetch(fakeurl)
-        .then((response) => response.json())
-        .then((result) => {
-            // Handle the API response
-            console.log(result);
-        })
-        .catch((error) => {
-            console.error('Error fetching data:', error);
-        });
+        // let fakeurl = ""
+        // fetch(fakeurl)
+        // .then((response) => response.json())
+        // .then((result) => {
+        //     // Handle the API response
+        //     console.log(result);
+        // })
+        // .catch((error) => {
+        //     console.error('Error fetching data:', error);
+        // });
     };
 
     return (
@@ -45,7 +46,7 @@ const CrosswordSettings = (props) => {
                     <Select
                         value={difficulty}
                         onChange={handleDifficulty}
-                        input={<TextField id="difficulty" variant="outlined" />}
+                        input={<Input id="difficulty" />}
                     >
                         <MenuItem value="easy">Easy</MenuItem>
                         <MenuItem value="medium">Medium</MenuItem>
