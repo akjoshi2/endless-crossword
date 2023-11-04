@@ -430,8 +430,11 @@ export const CrosswordLayout = () => {
       }
     return (
         <>
-            <CrosswordSettings/>
-            <Crossword data={data} />
+            <CrosswordSettings />
+            <Crossword data={data} theme={{
+              focusBackground: "#ffda00",
+              highlightBackground: "#a7d8ff",
+            }} />
         </>
-    )
+      )
 }
