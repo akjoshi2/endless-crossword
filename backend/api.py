@@ -40,7 +40,7 @@ def getCross():
     # seed = 3
     random.seed(seed)
     l = [i for i in os.listdir(f"./Structures/{diff}/")]
-    p = subprocess.Popen(["./cwsolver", "./wordlist.txt", f"./Structures/{diff}/{random.choice(l)}",f"{seed}"], stdout=subprocess.PIPE)
+    p = subprocess.Popen(["./cwsolver","./smallwordlist.txt" if diff == "Easy" else "./wordlist.txt", f"./Structures/{diff}/{random.choice(l)}",f"{seed}"], stdout=subprocess.PIPE)
     stdout = p.communicate()[0]
     #parse
     data = parseProgramOutput(stdout)

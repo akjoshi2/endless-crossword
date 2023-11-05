@@ -24,7 +24,7 @@ Endless Crossword is live at [https://endless-crossword.onrender.com/](https://e
 
 ## Design
 ### Frontend
-Endless Crossword is made using React, Svelte, Vite, deployed to Render.
+We created an application using Vite and Svelte for the frontend. We also used ReactAdapter to integrate React components within our Svelte application. JavaScript eventBus was used to communicate between the React and Svelte components. 
 
 ### Backend
 Endless Crossword's backend is made using Python, Flask, SQLite, Docker deployed to Render.
