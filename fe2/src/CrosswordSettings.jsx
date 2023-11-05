@@ -80,9 +80,9 @@ export const CrosswordSettings = () => {
     return (
         <ThemeProvider theme={selectedTheme}>
             <Container fluid={true}>
-                <Grid container spacing={2}>
+                <Grid container spacing={2} style={{marginTop: '10px'}}>
                     <Grid item xs={3} style={{ padding: "0px"}}>
-                    <FormControl style={{ marginBottom: '5px', width: '100%', marginTop: '25px'}}>
+                    <FormControl size="small" style={{ marginBottom: '5px', width: '100%', marginTop: '10px'}}>
                             <InputLabel style={{minWidth: 100, maxWidth: 1000 }} htmlFor="difficulty-label">Select Difficulty</InputLabel>
                             <Select
                                 label="Select Difficulty"
@@ -97,8 +97,9 @@ export const CrosswordSettings = () => {
                     </FormControl>
                     </Grid>
                     <Grid item xs={3} style={{ padding: "0px"}}>
-                    <form style={{ marginTop: "22px", marginBottom: '5px' }}>
+                    <form style={{marginTop: "16px", marginBottom: '5px', marginLeft: '8px' }}>
                             <TextField
+                                size="small"
                                 label="Current Seed:"
                                 variant="outlined"
                                 disabled
@@ -107,8 +108,9 @@ export const CrosswordSettings = () => {
                     </form>
                     </Grid>
                     <Grid item xs={3} style={{ padding: "0px"}}>
-                    <form style={{marginTop: "22px", marginBottom: '5px' }}>
+                    <form style={{marginTop: "16px", marginBottom: '5px', marginLeft: '8px' }}>
                             <TextField
+                                size="small"
                                 label="Custom Seed:"
                                 variant="outlined"
                                 value={customSeed}
@@ -117,7 +119,7 @@ export const CrosswordSettings = () => {
                     </form>
                     </Grid>
                     <Grid item xs={3} style={{ padding: "0px"}}>
-                    <Button style={{margin: "27px 0 0 0", background: "#a7d8ff", color:"#000000"}}variant="contained" color="primary" onClick={queryAPI}>
+                    <Button style={{margin: "17px 0 0 0", background: "#a7d8ff", color:"#000000"}}variant="contained" color="primary" onClick={queryAPI}>
                             Generate
                     </Button>
                     </Grid>

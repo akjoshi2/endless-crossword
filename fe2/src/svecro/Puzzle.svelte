@@ -267,4 +267,8 @@
       order: -1;
     }
   }
+
+  .puzzle {
+    margin-top: -20px;
+  }
 </style>
