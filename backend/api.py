@@ -9,7 +9,7 @@ import random
 app = Flask(__name__)
 
 
-def parseProgramOutput(input_string, con):
+def parseProgramOutput(input_string):
     entries = []
     con = sqlite3.connect("crossword")
     lines = input_string.strip().split(b'\n')
