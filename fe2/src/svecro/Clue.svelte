@@ -4,7 +4,6 @@
   export let number;
   export let clue;
   export let custom;
-  export let answer;
   export let isFilled;
   export let isNumberFocused = false;
   export let isDirectionFocused = false;

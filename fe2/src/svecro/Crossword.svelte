@@ -86,8 +86,6 @@
   function reset() {
     isRevealing = false;
     isChecking = false;
-    focusedCellIndex = 0;
-    focusedDirection = "across";
   }
 
   function onClear() {

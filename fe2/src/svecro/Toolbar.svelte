@@ -18,7 +18,7 @@
     {:else if action === 'check'}
       <button class={status ? "chk" : "" } on:click="{() => dispatch('event', 'check')}">Check</button>
     {:else if action === 'hint'}
-      <button on:click="{() => dispatch('event', 'hint')}">Hint</button>
+      <button on:click="{() => dispatch('event', 'hint')}">Clue</button>
     {/if}
   {/each}
 </div>
