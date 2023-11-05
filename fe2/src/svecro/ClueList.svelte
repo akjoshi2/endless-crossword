@@ -15,7 +15,6 @@
     {#each clues as clue}
       <Clue
         clue="{clue.clue}"
-        answer="{clue.answer}"
         number="{clue.number}"
         custom="{clue.custom}"
         isFilled="{clue.isFilled}"
