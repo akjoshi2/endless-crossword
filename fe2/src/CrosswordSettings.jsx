@@ -39,7 +39,7 @@ export const CrosswordSettings = () => {
     const queryAPI = () => {
         
 
-            fetch(`https://cheesehacks.onrender.com/?difficulty=${difficulty}&seed=${seed}`)
+            fetch(`https://cheesehacks.onrender.com/getCross?difficulty=${difficulty}&seed=${seed}`)
             .then((response) => response.json())
             .then((result) => {
                 // Handle the API response
@@ -69,9 +69,9 @@ export const CrosswordSettings = () => {
                                 onChange={handleDifficulty}
                                 input={<Input id="difficulty" />}
                             >
-                                <MenuItem value="easy">Easy</MenuItem>
-                                <MenuItem value="medium">Medium</MenuItem>
-                                <MenuItem value="hard">Hard</MenuItem>
+                                <MenuItem value="Easy">Easy</MenuItem>
+                                <MenuItem value="Medium">Medium</MenuItem>
+                                <MenuItem value="Hard">Hard</MenuItem>
                                 {/* Add more MenuItem components as needed */}
                             </Select>
                         </FormControl>
