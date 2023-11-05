@@ -34,7 +34,7 @@ void number_crossword(char** crossword, int crossword_size, int*** crossword_num
 Dictionary* init_dictionary(char* dictionary_path, int max_word_size, char** all_of_dict_ret,
                             int** dict_count_ret, int* lengths_on_grid, int* ascii_on_dict, int SEED, int OMIT);
 void free_dictionary(Dictionary* bigdict, int max_word_size, char* all_of_dict);
-char* find_word(Dictionary dictionary, Word* word);
+char* find_word(Dictionary dictionary, Word* word, int* dict_index_ret);
 int word_val(char* word, int* worth);
 void sort_dictionary(Dictionary dictionary, int* dictnode_values, int first, int last);
 
