@@ -16,7 +16,7 @@ Endless Crossword has many exciting features, including:
 + Unlimited Play: Say goodbye to waiting every day for a new crossword. With just a click of the Generate Button, a new puzzle is instantly created. 
 + Tailored Challenge: Endless Crossword lets you choose from a spectrum of difficulty levels. 
 + Easily Share: Send your generated crossword to your friends using the unique seed found right on the webpage.
-+ Solve Like a Pro: Stuck on a tricky clue? Endless Crossword offers tools to assist you when you get stuck, including GPT integration to create new clues on the fly
++ Solve Like a Pro: Stuck on a tricky clue? Endless Crossword offers clever tools to assist you when you get stuck, including Generative AI on the fly clue substitutions.
 
 ## Live Project Site
 
