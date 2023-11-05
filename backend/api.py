@@ -2,16 +2,16 @@ import sqlite3
 import requests
 import csv
 import json
-from flask import Flask, request
+from flask import Flask, request, jsonify
 import os
 import subprocess
 import random
 app = Flask(__name__)
 
 
-def parseProgramOutput(input_string, con):
+def parseProgramOutput(input_string):
     entries = []
-
+    con = sqlite3.connect("crossword")
     lines = input_string.strip().split(b'\n')
     for line in lines:
         parts = line.strip().split(b', ')
@@ -24,7 +24,7 @@ def parseProgramOutput(input_string, con):
             "y": y
         }
         entries.append(entry)
-
+    con.close()
     return entries
 
 def getClue(answer, con):
@@ -34,7 +34,6 @@ def getClue(answer, con):
     return random.choice(query)[0]
 @app.route("/getCross", methods=["GET"])
 def getCross():
-    con = sqlite3.connect("crossword")
     diff = request.args["difficulty"]
     seed = request.args["seed"]
     # diff = "Hard"
@@ -44,9 +43,10 @@ def getCross():
     p = subprocess.Popen(["./cwsolver", "./wordlist.txt", f"./Structures/{diff}/{random.choice(l)}",f"{seed}"], stdout=subprocess.PIPE)
     stdout = p.communicate()[0]
     #parse
-    data = parseProgramOutput(stdout, con)
-    con.close()
-    return json.dumps(data)
+    data = parseProgramOutput(stdout)
+    response = jsonify(data)
+    response.headers.add('Access-Control-Allow-Origin','*')
+    return response
 
 # print(getCross())
 
