@@ -1,7 +1,7 @@
 <script>
 // @ts-nocheck
 
-  import Crossword from "svelte-crossword"
+  import Crossword from "./svecro/Crossword.svelte"
   import CrosswordSettings from './CrosswordSettings.svelte';
   import {Col, Container, Row} from "sveltestrap";
   import eventBus from './eventBus';
@@ -25,11 +25,6 @@
           <Crossword data={data} showKeyboard={false} breakpoint={0}/>
         </Col>
       </div>
-    </Row>
-    <Row>
-      <Col md={4} lg={3}>
-        <CrosswordSettings />
-      </Col>
     </Row>
   </Container>
 </main>
