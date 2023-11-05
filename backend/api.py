@@ -50,3 +50,21 @@ def getCross():
 
 # print(getCross())
 
+@app.route("/scramble", methods=["GET"])
+def scramble():
+    clue = request.args["clue"]
+    answer = request.args["answer"]
+    payload = {"model" : "gpt-4", "messages" : [{"role" : "system" , "content" : 
+                                                 "your role is to help think of an easier clue provided a one word answer to a crossword puzzle and the original clue. \
+                                                    Only output the clue itself without adding any prefix."},
+                                                    
+                                                {
+                                                    "role" : "user",
+                                                    "content" : f"Clue : {clue} , Answer {answer}"
+                                                }]
+                                                }
+    
+    resp = requests.post("https://api.openai.com/v1/chat/completions", json=payload, headers={"Content-Type" : "application/json", "Authorization" :  f"Bearer {os.environ['GPT_KEY']}"})
+    print(resp)
+    return {"clue" : resp.json()["choices"][0]["message"]["content"]}
+
