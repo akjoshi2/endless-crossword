@@ -30,6 +30,7 @@
   let isRevealing = false;
   let isLoaded = false;
   let isChecking = false;
+  let isFirstLoad = true;
   let revealTimeout;
   let clueCompletion;
 
@@ -44,6 +45,7 @@
     clues = originalClues.map((d) => ({ ...d }));
     cells = createCells(originalClues);
     reset();
+    isFirstLoad = true;
   };
 
   $: data, onDataUpdate();
@@ -86,6 +88,11 @@
   function reset() {
     isRevealing = false;
     isChecking = false;
+    if (isFirstLoad)
+    {
+      focusedCellIndex = 0;
+      focusedDirection = "across";
+    }
   }
 
   function onClear() {
@@ -132,6 +139,7 @@
     {
       newClue = result;
       replaceClue(newClue, dataEle.answer);
+      isFirstLoad = false;
     }) 
   }
 

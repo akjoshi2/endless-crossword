@@ -18,12 +18,18 @@
     {:else if action === 'check'}
       <button class={status ? "chk" : "" } on:click="{() => dispatch('event', 'check')}">Check</button>
     {:else if action === 'hint'}
-      <button on:click="{() => dispatch('event', 'hint')}">Clue</button>
+      <button class={"long"} on:click="{() => dispatch('event', 'hint')}">
+        Change Clue
+      </button>
     {/if}
   {/each}
 </div>
 
 <style>
+  .long {
+    width: 10%;
+  }
+
   .chk {
     background-color:#a9a9a9
   }
