@@ -3,7 +3,7 @@ import { Card, CardContent, Button, TextField, FormControl, InputLabel, Select, 
     ThemeProvider, } from "@mui/material";
 import {Container, Row, Col} from 'react-bootstrap';
 export const CrosswordSettings = () => {
-    const [seed, setSeed] = useState(-1);
+    const [seed, setSeed] = useState(Math.floor(Math.random() * (2000000000 + 1)));
     const [difficulty, setDifficulty] = useState('');
     const [isDarkMode, setIsDarkMode] = useState(false);
 
@@ -37,14 +37,15 @@ export const CrosswordSettings = () => {
     const selectedTheme = isDarkMode ? darkTheme : lightTheme;
 
     const queryAPI = () => {
+        
 
-        if (seed < 0){
-            fetch('https://pastebin.com/raw/iHphP7kF')
+            fetch(`https://cheesehacks.onrender.com/?difficulty=${difficulty}&seed=${seed}`)
             .then((response) => response.json())
             .then((result) => {
                 // Handle the API response
                 console.log(result);
                 currElement = document.createElement("div");
+                currElement.id = ""
                 currElement.innerText = response.json();
                 currElement.style.display = "none";
                 document.insertBefore(currElement, document.body.firstChild);
@@ -52,18 +53,6 @@ export const CrosswordSettings = () => {
             .catch((error) => {
                 console.error('Error fetching data:', error);
             });
-        }
-        else{
-            fetch('https://chee')
-            .then((response) => response.json())
-            .then((result) => {
-                // Handle the API response
-                console.log(result);
-            })
-            .catch((error) => {
-                console.error('Error fetching data:', error);
-            });
-        }
     };
 
     return (
