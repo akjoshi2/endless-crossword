@@ -29,7 +29,7 @@ def parseProgramOutput(input_string, con):
 
 def getClue(answer, con):
     cur = con.cursor()
-    query = cur.execute(f"""SELECT clue FROM words WHERE answer LIKE '{answer}'""").fetchall()
+    query = cur.execute(f"""SELECT clue FROM words WHERE answer = '{answer}'""").fetchall()
     return random.choice(query)
 @app.route("/getCross", methods=["GET"])
 def getCross():
