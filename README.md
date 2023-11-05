@@ -37,6 +37,8 @@ Crossword generating and solving is a form of a Constraint Satisfaction Problem 
 2. Dynamic variable ordering (DVO): attempts to select the best variables to explore at every point in the search. In our implementations, we used the minimum remaining values (MRV) heuristic, which selects variables to instantiate whose remaining domains of possible values are smallest. 
 3. Conflict-directed backjumping (CBJ): maintains a list of the levels in the search with which every variable conflicts.
 
+We wrote the algorithm in C and used bit maps to massively speed up the algorithm. The algorithm uses the wordlist from [this dataset](https://huggingface.co/datasets/albertxu/CrosswordQA) which has over 6 million clues and 400k unique words. We found that a large dictionary is critical to the runtime of the algorithm.
+
 ## Developed Using
 - [React](https://reactjs.org/)
 - [Svelte](https://svelte.dev/)
