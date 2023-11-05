@@ -1,5 +1,11 @@
+<div align="center">
+  
 # Endless Crossword
-CheeseHacks 2023 Hackathon Projects
+_unlimited reproducible crossword generation and playability_
+
+</div>
+
+Created in less than 24 hours by [Akshay Joshi](https://github.com/akjoshi2), [Joseph Cai](https://github.com/jcai0791), [Aiden Cohen](https://github.com/aidencohen31), and [Sriram Bharadwaj](https://github.com/srirambh) for CheeseHacks 2023
 
 ## Description
 
@@ -9,14 +15,18 @@ Endless Crossword has many exciting features, including:
 + Revolutionary Puzzles: Our algorithm conjures up crossword puzzles that are always new and one-of-a-kind.
 + Tailored Challenge: Endless Crossword lets you choose from a spectrum of difficulty levels. It's like having your own personal puzzle butler, customizing puzzles just for you.
 + Easily Share: Send your generated crossword to your friends using the unique seed found right on the webpage.
-+ Solve Like a Pro: Stuck on a tricky clue? Endless Crossword offers tools to assist you when you get stuck.
++ Solve Like a Pro: Stuck on a tricky clue? Endless Crossword offers tools to assist you when you get stuck, including GPT integration to regenerate fresh clues on the fly
 
-## Technical Details
+## Live Project Site
+
+Endless Crossword is live at [https://endless-crossword.onrender.com/](https://endless-crossword.onrender.com/). 
+
+## Design
 ### Frontend
 Endless Crossword is made using React, Svelte, Vite, deployed to Render.
 
 ### Backend
-Endless Crossword's backend is made using Python, Flask, SQLite deployed to Render.
+Endless Crossword's backend is made using Python, Flask, SQLite, Docker deployed to Render.
 
 ### Algorithm
 
@@ -26,3 +36,13 @@ Crossword generating and solving is a form of a Constraint Satisfaction Problem 
 1. Forward checking: use current instantiations of variables to prune domains of variables that have not yet been instantiated.
 2. Dynamic variable ordering (DVO): attempts to select the best variables to explore at every point in the search. In our implementations, we used the minimum remaining values (MRV) heuristic, which selects variables to instantiate whose remaining domains of possible values are smallest. 
 3. Conflict-directed backjumping (CBJ): maintains a list of the levels in the search with which every variable conflicts.
+
+## Developed Using
+- [React](https://reactjs.org/)
+- [Svelte](https://svelte.dev/)
+- [JavaScript](https://www.javascript.com)
+- [Flask](https://flask.palletsprojects.com/en/2.0.x/)
+- [Render](https://render.com/)
+- [Python](https://www.python.org)
+- [C](https://www.cprogramming.com/)
+
