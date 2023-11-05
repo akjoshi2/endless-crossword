@@ -118,7 +118,7 @@ export const CrosswordSettings = () => {
                     </CardContent>
                     <CardContent>
                         {/* Generate button */}
-                        <Button style={{margin: "20px 0 0 0"}}variant="contained" color="primary" onClick={queryAPI}>
+                        <Button style={{margin: "20px 0 0 0", background: "#a7d8ff", color:"#000000"}}variant="contained" color="primary" onClick={queryAPI}>
                             Generate
                         </Button>
                     </CardContent>
