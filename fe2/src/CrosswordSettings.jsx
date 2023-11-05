@@ -118,6 +118,7 @@ export const CrosswordSettings = () => {
                                 onKeyPress= {(e) => {
                                     if (e.key === 'Enter') {
                                         e.preventDefault();
+                                        queryAPI();
                                     }
                             }}
                             />
