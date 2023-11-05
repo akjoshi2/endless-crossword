@@ -38,10 +38,10 @@ Crossword generating and solving is a form of a Constraint Satisfaction Problem 
 3. Conflict-directed backjumping (CBJ): maintains a list of the levels in the search with which every variable conflicts.
 
 ## Developed Using
-[React](https://reactjs.org/)
-[Svelte](https://svelte.dev/)
-[JavaScript](https://www.javascript.com)
-[Flask](https://flask.palletsprojects.com/en/2.0.x/)
-[Python](https://www.python.org)
-[C](https://www.cprogramming.com/)
+- [React](https://reactjs.org/)
+- [Svelte](https://svelte.dev/)
+- [JavaScript](https://www.javascript.com)
+- [Flask](https://flask.palletsprojects.com/en/2.0.x/)
+- [Python](https://www.python.org)
+- [C](https://www.cprogramming.com/)
 
