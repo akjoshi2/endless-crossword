@@ -13,7 +13,7 @@ Endless Crossword has many exciting features, including:
 
 ## Technical Details
 ### Frontend
-Endless Crossword is made using React, Svelte, Vite, deployed to GitHub Pages.
+Endless Crossword is made using React, Svelte, Vite, deployed to Render.
 
 ### Backend
 Endless Crossword's backend is made using Python, Flask, SQLite, Docker deployed to Render.
