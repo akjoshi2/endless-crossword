@@ -4,6 +4,7 @@
   export let number;
   export let clue;
   export let custom;
+  export let answer;
   export let isFilled;
   export let isNumberFocused = false;
   export let isDirectionFocused = false;
@@ -16,21 +17,16 @@
 </script>
 
 <li bind:this="{element}" use:scrollTo="{isFocused}">
-  <div>
-      <button
-      class="clue {custom}"
-      class:is-disable-highlight="{isDisableHighlight}"
-      class:is-number-focused="{isNumberFocused}"
-      class:is-direction-focused="{isDirectionFocused}"
-      class:is-filled="{isFilled}"
-      on:click="{onFocus}">
-      <strong>{number}</strong>
-      {clue}
-    </button>
-    <button>
-      ME!
-    </button>
-  </div>
+  <button
+    class="clue {custom}"
+    class:is-disable-highlight="{isDisableHighlight}"
+    class:is-number-focused="{isNumberFocused}"
+    class:is-direction-focused="{isDirectionFocused}"
+    class:is-filled="{isFilled}"
+    on:click="{onFocus}">
+    <strong>{number}</strong>
+    {clue}
+  </button>
 </li>
 
 <style>
