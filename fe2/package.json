@@ -1,12 +1,15 @@
 {
   "name": "fe2",
   "private": true,
+  "homepage": "https://akjoshi2.github.io/endless-crossword",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "devDependencies": {
     "@smui/layout-grid": "^7.0.0-beta.15",
