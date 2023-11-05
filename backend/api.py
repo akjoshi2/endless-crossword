@@ -65,6 +65,7 @@ def scramble():
                                                 }
     
     resp = requests.post("https://api.openai.com/v1/chat/completions", json=payload, headers={"Content-Type" : "application/json", "Authorization" :  f"Bearer {os.environ['GPT_KEY']}"})
-    print(resp)
-    return {"clue" : resp.json()["choices"][0]["message"]["content"]}
+    response = jsonify({"clue" : resp.json()["choices"][0]["message"]["content"]})
+    response.headers.add('Access-Control-Allow-Origin','*')
+    return response
 
