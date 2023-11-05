@@ -1,4 +1,6 @@
 <script>
+// @ts-nocheck
+
   import { onMount } from "svelte";
   import Toolbar from "./Toolbar.svelte";
   import Puzzle from "./Puzzle.svelte";
@@ -118,8 +120,21 @@
     }
   }
 
+  function replaceClue(newClue, ans) {
+    let newClueVal = newClue.clue;
+    data = data.map((d) => (d.answer == ans ? {...d , clue: newClueVal} :{...d} ))
+  }
+
   function onHint() {
-    console.log("HINT")
+    let newClue;
+    let x = focusedCell.x;
+    let y = focusedCell.y;
+    const dataEle = data.filter((d) => (d.x == x &&  d.y == y && d.direction== focusedDirection))[0]; 
+    fetch(`https://cheesehacks.onrender.com/scramble?clue=${dataEle.clue}&answer=${dataEle.answer}`).then((response) => response.json()).then((result) => 
+    {
+      newClue = result;
+      replaceClue(newClue, dataEle.answer);
+    }) 
   }
 
   function startReveal() {
