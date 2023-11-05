@@ -2,12 +2,13 @@
   import { createEventDispatcher } from "svelte";
   import CrosswordSettings from "../CrosswordSettings.svelte";
   const dispatch = createEventDispatcher();
-
   export let actions = ["clear", "reveal", "check"];
 </script>
 
 <div class="toolbar">
-  <CrosswordSettings />
+  <div class="settings">
+    <CrosswordSettings />
+  </div>
   {#each actions as action}
     {#if action === 'clear'}
       <button on:click="{() => dispatch('event', 'clear')}">Clear</button>
@@ -20,11 +21,14 @@
 </div>
 
 <style>
+
+  .settings {
+    margin-right: 450px;
+  }
   .toolbar {
-    margin-bottom: 1em;
-    padding: 1em 0;
+    /* margin-bottom: 1em; */
     display: flex;
-    justify-content: flex-end;
+    /* justify-content: flex-end; */
     font-family: var(--font);
     font-size: 0.85em;
     background-color: transparent;
@@ -41,6 +45,7 @@
     padding: 0.75em;
     border: none;
     font-weight: 400;
+    height: 50%;
     transition: background-color 150ms;
   }
 
