@@ -5,7 +5,7 @@ import {Container, Row, Col} from 'react-bootstrap';
 import eventBus from "./eventBus";
 export const CrosswordSettings = () => {
     const [currSeed, setCurrSeed] = useState(4);
-    const [customSeed, setCustomSeed] = useState(0);
+    const [customSeed, setCustomSeed] = useState('');
     const [difficulty, setDifficulty] = useState('Hard');
     const [isDarkMode, setIsDarkMode] = useState(false);
 
@@ -40,17 +40,41 @@ export const CrosswordSettings = () => {
 
     const queryAPI = () => {
         
-            setCurrSeed(customSeed);
-            fetch(`https://cheesehacks.onrender.com/getCross?difficulty=${difficulty}&seed=${customSeed}`)
-            .then((response) => response.json())
-            .then((result) => {
-                // Handle the API response
-                console.log(result);
-                eventBus.emit('reactDOMChange',result);
-            })
-            .catch((error) => {
-                console.error('Error fetching data:', error);
-            });
+            console.log(customSeed)
+            console.log(currSeed)
+            if (customSeed.length === 0){
+                console.log("inside")
+                let randomNum = Math.floor(Math.random() * (2000000))
+                setCurrSeed(randomNum);
+                fetch(`https://cheesehacks.onrender.com/getCross?difficulty=${difficulty}&seed=${randomNum}`)
+                .then((response) => response.json())
+                .then((result) => {
+                    // Handle the API response
+                    console.log(result);
+                    console.log(customSeed)
+                    console.log(currSeed)
+                    eventBus.emit('reactDOMChange',result);
+                }).catch((error) => {
+                    console.error('Error fetching data:', error);
+                });
+            }
+            else
+            {
+                setCurrSeed(customSeed);
+                fetch(`https://cheesehacks.onrender.com/getCross?difficulty=${difficulty}&seed=${customSeed}`)
+                .then((response) => response.json())
+                .then((result) => {
+                    // Handle the API response
+                    console.log(result);
+                    console.log(customSeed)
+                    console.log(currSeed)
+                    eventBus.emit('reactDOMChange',result);
+                })
+                .catch((error) => {
+                    console.error('Error fetching data:', error);
+                });
+            }
+
     };
 
     return (
