@@ -46,4 +46,5 @@ Crossword generating and solving is a form of a Constraint Satisfaction Problem 
 - [Python](https://www.python.org)
 - [C](https://www.cprogramming.com/)
 - [Docker](https://www.docker.com/)
+- [SQLite](https://www.sqlite.org/index.html)
 
