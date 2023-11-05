@@ -150,7 +150,7 @@
       onReveal="{onReveal}"
       onCheck="{onCheck}"
       onHint="{onHint}">
-      <Toolbar actions="{actions}" on:event="{onToolbarEvent}" />
+      <Toolbar actions="{actions}" on:event="{onToolbarEvent}" status="{isChecking}"/>
     </slot>
 
     <div class="play" class:stacked class:is-loaded="{isLoaded}">

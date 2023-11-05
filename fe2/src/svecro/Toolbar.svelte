@@ -3,6 +3,7 @@
   import CrosswordSettings from "../CrosswordSettings.svelte";
   const dispatch = createEventDispatcher();
   export let actions = ["hint","clear", "reveal", "check"];
+  export let status;
 </script>
 
 <div class="toolbar">
@@ -15,7 +16,7 @@
     {:else if action === 'reveal'}
       <button on:click="{() => dispatch('event', 'reveal')}">Reveal</button>
     {:else if action === 'check'}
-      <button on:click="{() => dispatch('event', 'check')}">Check</button>
+      <button class={status ? "chk" : "" } on:click="{() => dispatch('event', 'check')}">Check</button>
     {:else if action === 'hint'}
       <button on:click="{() => dispatch('event', 'hint')}">Hint</button>
     {/if}
@@ -23,6 +24,9 @@
 </div>
 
 <style>
+  .chk {
+    background-color:#a9a9a9
+  }
 
   .settings {
     margin-right: 450px;
