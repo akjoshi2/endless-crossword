@@ -2,7 +2,7 @@
   import { createEventDispatcher } from "svelte";
   import CrosswordSettings from "../CrosswordSettings.svelte";
   const dispatch = createEventDispatcher();
-  export let actions = ["clear", "reveal", "check"];
+  export let actions = ["hint","clear", "reveal", "check"];
 </script>
 
 <div class="toolbar">
@@ -16,6 +16,8 @@
       <button on:click="{() => dispatch('event', 'reveal')}">Reveal</button>
     {:else if action === 'check'}
       <button on:click="{() => dispatch('event', 'check')}">Check</button>
+    {:else if action === 'hint'}
+      <button on:click="{() => dispatch('event', 'hint')}">Hint</button>
     {/if}
   {/each}
 </div>
