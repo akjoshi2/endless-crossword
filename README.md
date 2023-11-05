@@ -6,6 +6,8 @@ _unlimited reproducible crossword generation and playability_
 </div>
 CheeseHacks 2023 Hackathon Project
 
+Created in less than 24 hours by [Akshay Joshi](https://github.com/akjoshi2), [Joseph Cai](https://github.com/jcai0791), [Aiden Cohen](https://github.com/aidencohen31), and [Sriram Bharadwaj](https://github.com/srirambh)
+
 ## Description
 
 Endless Crossword is your ticket to a world of limitless, procedurally-generated crosswords, featuring clues sourced from prestigious publications like the New York Times and more!
