@@ -18,7 +18,7 @@ RUN wget https://huggingface.co/datasets/albertxu/CrosswordQA/resolve/refs%2Fcon
 
 RUN python3 backend/db.py
 ENV FLASK_APP=api.py
-
+RUN mv crossword backend/crossword
 EXPOSE 8080
 WORKDIR /backend
 CMD ["gunicorn" , "-b", "0.0.0.0:8080",   "api:app"]
