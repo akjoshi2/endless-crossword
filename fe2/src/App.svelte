@@ -20,9 +20,11 @@
 <main>
   <Container>
     <Row>
-      <Col md={4} lg={3}>
-        <Crossword data={data} showKeyboard={false} breakpoint={0}/>
-      </Col>
+      <div>
+        <Col md={4} lg={3}>
+          <Crossword data={data} showKeyboard={false} breakpoint={0}/>
+        </Col>
+      </div>
     </Row>
     <Row>
       <Col md={4} lg={3}>
