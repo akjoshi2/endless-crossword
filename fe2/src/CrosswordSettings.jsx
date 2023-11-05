@@ -83,7 +83,7 @@ export const CrosswordSettings = () => {
                 <Card style={{ width: "70%", margin: "20px 27%", display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr', gap: '10px' }}>
                     <CardContent>
                         {/* Dropdown options for difficulty */}
-                        <FormControl style={{ marginBottom: '20px', width: '100%'}}>
+                        <FormControl style={{ marginBottom: '20px', width: '100%', marginTop: '20px'}}>
                             <InputLabel style={{minWidth: 100, maxWidth: 1000 }} htmlFor="difficulty-label">Select Difficulty</InputLabel>
                             <Select
                                 label="Select Difficulty"
