@@ -5,7 +5,8 @@ RUN apt-get update && \
   build-essential \
   git \
   wget \
-  python3-pip
+  python3-pip \
+  mysql-server
 
 COPY . .
 
