@@ -115,6 +115,11 @@ export const CrosswordSettings = () => {
                                 variant="outlined"
                                 value={customSeed}
                                 onChange={handleSeed}
+                                onKeyPress= {(e) => {
+                                    if (e.key === 'Enter') {
+                                        e.preventDefault();
+                                    }
+                            }}
                             />
                     </form>
                     </Grid>
