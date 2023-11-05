@@ -99,14 +99,18 @@ export const CrosswordSettings = () => {
                         </FormControl>
                     </CardContent>
                     <CardContent>
-                        {/* Seed input */}
+                        {/* Current seed disabled input */}
                         <form style={{ margin: "20px 0 0 0", marginBottom: '20px' }}>
-                            <Typography variant="subtitle1">Current Seed:</Typography>
-                            <Typography variant="body1">{currSeed}</Typography>
+                            <TextField
+                                label="Current Seed:"
+                                variant="outlined"
+                                disabled
+                                value={currSeed}
+                            />
                         </form>
                     </CardContent>
                     <CardContent>
-                        {/* Seed input */}
+                        {/* Custom seed input */}
                         <form style={{ margin: "20px 0 0 0", marginBottom: '20px' }}>
                             <TextField
                                 label="Custom Seed:"
