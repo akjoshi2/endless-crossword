@@ -1,0 +1,30 @@
+{
+  "name": "fe2",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@smui/layout-grid": "^7.0.0-beta.15",
+    "@sveltejs/vite-plugin-svelte": "^2.4.2",
+    "@vitejs/plugin-react": "^4.1.1",
+    "svelte": "^4.0.5",
+    "vite": "^4.4.5"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.14.16",
+    "react": "^18.2.0",
+    "react-bootstrap": "^2.9.1",
+    "react-svelte": "^1.0.2",
+    "svelte-crossword": "^0.3.4",
+    "svelte-preprocess-react": "^0.16.0",
+    "svelte-react-kit": "^0.1.12",
+    "sveltestrap": "^5.11.2"
+  }
+}
