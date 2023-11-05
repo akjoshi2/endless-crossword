@@ -14,7 +14,7 @@ Endless Crossword is your ticket to a world of limitless, procedurally-generated
 Endless Crossword has many exciting features, including:
 + Revolutionary Puzzles: Our algorithm conjures up crossword puzzles that are always new and one-of-a-kind.
 + Unlimited Play: Say goodbye to waiting every day for a new crossword. With just a click of the Generate Button, a new puzzle is instantly created. 
-+ Tailored Challenge: Endless Crossword lets you choose from a spectrum of difficulty levels. It's like having your own personal puzzle butler, customizing puzzles just for you.
++ Tailored Challenge: Endless Crossword lets you choose from a spectrum of difficulty levels. 
 + Easily Share: Send your generated crossword to your friends using the unique seed found right on the webpage.
 + Solve Like a Pro: Stuck on a tricky clue? Endless Crossword offers tools to assist you when you get stuck, including GPT integration to create new clues on the fly
 
