@@ -1,7 +1,7 @@
 {
   "name": "fe2",
   "private": true,
-  "homepage": "https://akjoshi2.github.io/endless-crossword",
+  "homepage": "https://akjoshi2.github.io/endless-crossword/index.html",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
