@@ -1,5 +1,8 @@
+<div align="center">
 # Endless Crossword
-CheeseHacks 2023 Hackathon Projects
+_unlimited reproducible crossword generation and playability_
+</div>
+CheeseHacks 2023 Hackathon Project
 
 ## Description
 
