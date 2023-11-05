@@ -9,9 +9,9 @@ RUN apt-get update && \
 
 COPY . .
 
-RUN cd backend/crosswordsolver && make
+RUN cd backend/crosswordsolver && make 
 
-RUN mv backend/crosswordsolver/cwsolver .
+RUN mv backend/crosswordsolver/cwsolver /backend
 RUN pip install -r backend/requirements.txt
 
 RUN wget https://huggingface.co/datasets/albertxu/CrosswordQA/resolve/refs%2Fconvert%2Fparquet/default/train/0000.parquet
