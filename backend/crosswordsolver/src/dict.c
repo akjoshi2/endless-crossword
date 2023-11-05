@@ -112,8 +112,9 @@ void free_dictionary(Dictionary* bigdict, int max_word_size, char* all_of_dict) 
     }
     free(bigdict);
 }
-
-char* find_word(Dictionary dictionary, Word* word) {
+//dictionary = char ** = array words for specific length
+//word = words for this index
+char* find_word(Dictionary dictionary, Word* word, int* dict_index_ret) {
     register unsigned long long* array = word->map->array;
     int size = word->map->size;
     for (register int i = 0 ; i < size ; ++i) {
@@ -123,6 +124,7 @@ char* find_word(Dictionary dictionary, Word* word) {
                 // Turning off the bit so we don't use it in the future 
                 array[i] ^= 1ULL << j;
                 --word->map->sum;
+                *dict_index_ret = (i << 6) | j;
                 return dictionary[(i << 6) | j];
             }
         }

@@ -19,6 +19,7 @@ int solve_crossword(char** crossword, Dictionary* bigdict, Word** words, int wor
     // Initializing map_stack (for backtrack) 
     int max_map_size = 0; // Map stack will be at most the sum of insecc in words 
     int map_stack_size = wordnode_count;
+    int word_dict_indicies[wordnode_count][2];
     for (int i = 0 ; i < wordnode_count ; ++i) {
         map_stack_size += words[i]->insecc;
         if (words[i]->map->size > max_map_size) {
@@ -40,8 +41,16 @@ int solve_crossword(char** crossword, Dictionary* bigdict, Word** words, int wor
         prune_flag = 0;
         // Find word in bigdict 
         char* word_found = NULL;
-        if ((word_found = find_word(bigdict[words[index]->size - 1], words[index])) == NULL) {
-            if (index == 0) { // Cannot backtrack from zero 
+        int dict_index = -1;
+        //Turn off words that have already been used
+        for(int i = 0; i<index; i++) {
+            if(word_dict_indicies[i][1]==words[index]->size){
+                int dict_ind = word_dict_indicies[i][0];
+                words[index]->map->array[dict_ind>>6] &= ~(1 << (dict_ind%64));
+            }
+        }
+        if ((word_found = find_word(bigdict[words[index]->size - 1], words[index], &dict_index)) == NULL) {
+            if (index == 0) { // Cannot backtrack from zero
                 fprintf(stderr, "Couldn\'t solve crossword (extra sad) :(\n");
                 return 1;
             }
@@ -82,6 +91,8 @@ int solve_crossword(char** crossword, Dictionary* bigdict, Word** words, int wor
             } while (index > jump_to);
             continue;
         }
+
+
         // Forward checking 
         int emc_index = index - 1;
         int* emc_past_fc = NULL;
@@ -130,6 +141,8 @@ int solve_crossword(char** crossword, Dictionary* bigdict, Word** words, int wor
             // Label word used 
             words[index - 1]->in_use = 1;
             words[index - 1]->word_put = word_found;
+            word_dict_indicies[index-1][0] = dict_index;
+            word_dict_indicies[index-1][1] = words[index-1]->size;
             if (index == wordnode_count) break;
             prop_word(words, wordnode_count, index); // DVO 
             map_stack[map_stack_index].sum = words[index]->map->sum;
