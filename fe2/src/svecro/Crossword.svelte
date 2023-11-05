@@ -108,7 +108,14 @@
   }
 
   function onCheck() {
-    isChecking = true;
+    if (isChecking)
+    {
+      isChecking = false;
+    }
+    else
+    {
+      isChecking = true;
+    }
   }
 
   function onHint() {
