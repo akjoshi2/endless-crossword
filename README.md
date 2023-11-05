@@ -9,14 +9,14 @@ Endless Crossword has many exciting features, including:
 + Revolutionary Puzzles: Our algorithm conjures up crossword puzzles that are always new and one-of-a-kind.
 + Tailored Challenge: Endless Crossword lets you choose from a spectrum of difficulty levels. It's like having your own personal puzzle butler, customizing puzzles just for you.
 + Easily Share: Send your generated crossword to your friends using the unique seed found right on the webpage.
-+ Solve Like a Pro: Stuck on a tricky clue? Endless Crossword offers tools to assist you when you get stuck.
++ Solve Like a Pro: Stuck on a tricky clue? Endless Crossword offers tools to assist you when you get stuck, including GPT integration to regenerate fresh clues on the fly
 
 ## Technical Details
 ### Frontend
 Endless Crossword is made using React, Svelte, Vite, deployed to GitHub Pages.
 
 ### Backend
-Endless Crossword's backend is made using Python, Flask, SQLite deployed to Render.
+Endless Crossword's backend is made using Python, Flask, SQLite, Docker deployed to Render.
 
 ### Algorithm
 
