@@ -43,7 +43,10 @@
     originalClues = createClues(data);
     validated = validateClues(originalClues);
     clues = originalClues.map((d) => ({ ...d }));
-    cells = createCells(originalClues);
+    if (isFirstLoad)
+    {
+      cells = createCells(originalClues);
+    }
     reset();
     isFirstLoad = true;
   };
