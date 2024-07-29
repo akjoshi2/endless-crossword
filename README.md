@@ -20,6 +20,9 @@ Endless Crossword has many exciting features, including:
 
 ## Live Project Site
 
+![image](https://github.com/user-attachments/assets/4dcadf21-fc0e-406d-95e1-7d7d0ba452ce)
+
+UPDATE 7/28/24 - Endless Crossword is no longer live.
 Endless Crossword is live at [https://endless-crossword.onrender.com/](https://endless-crossword.onrender.com/). 
 
 ## Design
